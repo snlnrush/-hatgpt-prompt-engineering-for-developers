@@ -9,17 +9,18 @@ print(api_key)
 client = OpenAI(api_key=api_key)
 
 
-def get_response(prompt):
+def get_response(system_prompt, user_prompt):
     # Create a request to the ChatCompletion endpoint
     response = client.chat.completions.create(
       model="gpt-3.5-turbo",
       # Assign the role and content for the message
-      messages=[{"role": 'user', "content": prompt}], temperature=0)
+      messages=[{"role": "system", "content": system_prompt},
+                {"role": 'user', "content": user_prompt}], temperature=0)
     return response
 
 
 def main():
-    response = get_response("В чем смысл жизни?")
+    response = get_response("You are a chatbot that answers SEO questions.", "Who are you?")
     print(response)
     print(response.choices)
     print(response.choices[0])
