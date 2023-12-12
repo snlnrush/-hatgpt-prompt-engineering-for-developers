@@ -33,6 +33,7 @@ def main():
         user_massage = input('Enter your message: ')
 
         if user_massage == 'qqq':
+            print('Chat finished!')
             break
 
         messages.append({'role': 'user', 'content': user_massage})
